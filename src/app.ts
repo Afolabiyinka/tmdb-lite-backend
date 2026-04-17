@@ -13,10 +13,13 @@ configDotenv();
 const PORT = process.env.PORT || 5050
 const app = express();
 
-app.options("*", cors({
-    credentials: true,
-    origin: ["http://localhost:5173", "https://tmdb-lite.vercel.app"],
-}));
+app.use(cors(
+    {
+        credentials: true,
+        origin: ["http://localhost:5173", "https://tmdb-lite.vercel.app"],
+
+    }
+))
 
 app.use(express.json())
 app.use(cookieParser());

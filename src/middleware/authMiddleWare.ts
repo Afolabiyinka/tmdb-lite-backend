@@ -14,6 +14,10 @@ export const authMiddleware = (
     res: Response,
     next: NextFunction,
 ) => {
+    if (req.method === "OPTIONS") {
+        return next();
+    }
+
     const token = req.cookies?.token;
 
     if (!token) {
