@@ -71,7 +71,7 @@ const inFavourites = async (req: AuthenticatedRequest, res: Response) => {
         return res.status(401).json({ message: "Unauthorized" });
     }
 
-    const { movieId } = req.body;
+    const { movieId } = req.params;
 
     if (!movieId) {
         return res.status(400).json({ message: "Movie Id is required" });
