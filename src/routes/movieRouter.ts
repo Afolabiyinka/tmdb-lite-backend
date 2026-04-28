@@ -5,4 +5,5 @@ export const MovieRouter = Router()
 
 MovieRouter.route("/").get(fetchFavourites)
 MovieRouter.route("/add").post(addToFavorites)
+MovieRouter.route("/inFavourite").get(addToFavorites)
 MovieRouter.route("/remove").delete(removeFromFavourites)
