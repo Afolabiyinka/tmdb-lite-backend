@@ -76,7 +76,7 @@ const inFavourites = async (req: AuthenticatedRequest, res: Response) => {
 
     const parsedId = Number(movieId);
 
-    if (!parsedId || isNaN(parsedId)) {
+    if (isNaN(parsedId)) {
         return res.status(400).json({ message: "Invalid Movie Id" });
     }
 
