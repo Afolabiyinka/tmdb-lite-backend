@@ -73,15 +73,18 @@ const inFavourites = async (req: AuthenticatedRequest, res: Response) => {
 
     const { movieId } = req.params;
 
-    if (!movieId) {
-        return res.status(400).json({ message: "Movie Id is required" });
+
+    const parsedId = Number(movieId);
+
+    if (!parsedId || isNaN(parsedId)) {
+        return res.status(400).json({ message: "Invalid Movie Id" });
     }
 
     try {
         const movie = await Movie.findOne({
             where: {
                 userId,
-                id: movieId,
+                id: parsedId,
             },
         });
 
