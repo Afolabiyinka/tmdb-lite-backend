@@ -49,7 +49,7 @@ const addToFavorites = async (req: AuthenticatedRequest, res: Response) => {
     }
 
     try {
-        Movie.create({
+        await Movie.create({
             ...movie,
             userId: userId
         });
@@ -64,7 +64,36 @@ const addToFavorites = async (req: AuthenticatedRequest, res: Response) => {
     }
 }
 
+const inFavourites = async (req: AuthenticatedRequest, res: Response) => {
+    const userId = req.user?.id;
 
+    if (!userId) {
+        return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    const { movieId } = req.body;
+
+    if (!movieId) {
+        return res.status(400).json({ message: "Movie Id is required" });
+    }
+
+    try {
+        const movie = await Movie.findOne({
+            where: {
+                userId,
+                id: movieId,
+            },
+        });
+
+        return res.status(200).json({
+            inFavourites: !!movie,
+        });
+
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Something went wrong" });
+    }
+};
 const removeFromFavourites = async (req: AuthenticatedRequest, res: Response) => {
     const userId = req.user?.id;
 
@@ -97,4 +126,4 @@ const removeFromFavourites = async (req: AuthenticatedRequest, res: Response) =>
     }
 }
 
-export { addToFavorites, removeFromFavourites, fetchFavourites }
+export { addToFavorites, removeFromFavourites, fetchFavourites, inFavourites }
