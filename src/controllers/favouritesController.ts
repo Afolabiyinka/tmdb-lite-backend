@@ -10,7 +10,7 @@ const fetchFavourites = async (req: AuthenticatedRequest, res: Response) => {
 
     // get page & limit from query params
     const page = parseInt(req.query.page as string) || 1;
-    const limit = parseInt(req.query.limit as string) || 50;
+    const limit = parseInt(req.query.limit as string) || 20;
 
     const offset = (page - 1) * limit;
 
