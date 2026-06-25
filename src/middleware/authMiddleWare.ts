@@ -1,7 +1,6 @@
-import { NextFunction, Response } from "express";
+import { NextFunction, RequestHandler, Response } from "express";
 import jwt, { TokenExpiredError } from "jsonwebtoken";
 import { DecodedUser } from "../types/auth";
-import { AuthenticatedRequest } from "../types/request";
 
 const jwtSecret = process.env.JWT_SECRET;
 
@@ -9,10 +8,10 @@ if (!jwtSecret) {
     throw new Error("JWT_SECRET is not defined");
 }
 
-export const authMiddleware = (
-    req: AuthenticatedRequest,
-    res: Response,
-    next: NextFunction,
+export const authMiddleware: RequestHandler = (
+    req,
+    res,
+    next,
 ) => {
     if (req.method === "OPTIONS") {
         return next();

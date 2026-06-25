@@ -1,7 +1,6 @@
 import { RequestHandler, Response } from "express";
 import { GoogleLoginPayload, } from "../types/auth";
 import { User } from "../models/User";
-import { AuthenticatedRequest } from "../types/request";
 import { OAuth2Client } from "google-auth-library";
 import { generateToken } from "../utils/generateToken";
 import { ApiError } from "../types/error";

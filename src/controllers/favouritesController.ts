@@ -1,10 +1,9 @@
-import { Response } from "express";
 import { MovieType } from "../types/movie";
 import { Movie } from "../models/Movie";
-import { AuthenticatedRequest } from "../types/request";
+import { RequestHandler } from "express";
 
 
-const fetchFavourites = async (req: AuthenticatedRequest, res: Response) => {
+const fetchFavourites: RequestHandler = async (req, res) => {
 
     const id = req.user?.id;
 
@@ -36,7 +35,7 @@ const fetchFavourites = async (req: AuthenticatedRequest, res: Response) => {
     }
 }
 
-const addToFavorites = async (req: AuthenticatedRequest, res: Response) => {
+const addToFavorites: RequestHandler = async (req, res) => {
     const movie: MovieType = req.body;
 
     const userId = req.user?.id;
@@ -64,7 +63,7 @@ const addToFavorites = async (req: AuthenticatedRequest, res: Response) => {
     }
 }
 
-const inFavourites = async (req: AuthenticatedRequest, res: Response) => {
+const inFavourites: RequestHandler = async (req, res) => {
     const userId = req.user?.id;
 
     if (!userId) {
@@ -97,7 +96,7 @@ const inFavourites = async (req: AuthenticatedRequest, res: Response) => {
         return res.status(500).json({ message: "Something went wrong" });
     }
 };
-const removeFromFavourites = async (req: AuthenticatedRequest, res: Response) => {
+const removeFromFavourites: RequestHandler = async (req, res) => {
     const userId = req.user?.id;
 
     if (!userId) {

@@ -1,9 +1,8 @@
-import { Response } from "express";
-import { AuthenticatedRequest } from "../types/request";
+import { RequestHandler, } from "express";
 import { User } from "../models/User";
 import { EditUserPayload } from "../types/auth";
 
-const getUser = async (req: AuthenticatedRequest, res: Response) => {
+const getUser: RequestHandler = async (req, res, next) => {
     const id = req.user?.id;
 
     if (!id) {
@@ -32,7 +31,7 @@ const getUser = async (req: AuthenticatedRequest, res: Response) => {
     }
 };
 
-const editUser = async (req: AuthenticatedRequest, res: Response) => {
+const editUser: RequestHandler = async (req, res) => {
     const id = req.user?.id;
     if (!id) {
         return res.status(400).json({
@@ -65,7 +64,7 @@ const editUser = async (req: AuthenticatedRequest, res: Response) => {
     }
 };
 
-const deleteAccount = async (req: AuthenticatedRequest, res: Response) => {
+const deleteAccount: RequestHandler = async (req, res) => {
     const id = req.user?.id;
     if (!id) {
         return res.status(400).json({

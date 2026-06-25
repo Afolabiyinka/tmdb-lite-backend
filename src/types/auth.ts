@@ -7,7 +7,7 @@ export interface SignupPayload {
 export type LoginPayload = Omit<SignupPayload, "username">;
 
 export type DecodedUser = {
-    id: string | number;
+    id: string;
 };
 export type EditUserPayload = Omit<SignupPayload, "password">;
 
