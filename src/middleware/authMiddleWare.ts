@@ -1,6 +1,7 @@
-import { NextFunction, RequestHandler, Response } from "express";
+import { RequestHandler } from "express";
 import jwt, { TokenExpiredError } from "jsonwebtoken";
 import { DecodedUser } from "../types/auth";
+import { COOKIE_NAME } from "../utils/cookieOptions";
 
 const jwtSecret = process.env.JWT_SECRET;
 
@@ -17,7 +18,7 @@ export const authMiddleware: RequestHandler = (
         return next();
     }
 
-    const token = req.cookies?.token;
+    const token = req.cookies?.[COOKIE_NAME];
 
     if (!token) {
         return res.status(401).json({ message: "No token provided" });
