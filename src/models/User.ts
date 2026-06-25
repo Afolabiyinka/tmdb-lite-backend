@@ -4,9 +4,9 @@ import { models } from "../types/models";
 
 interface UserAttributes {
     id?: string;
+    email: string
     username: string;
-    password: string;
-    email: string;
+    profilePic: string
     createdAt?: Date;
     updatedAt?: Date;
 }
@@ -16,8 +16,8 @@ interface UserAttributes {
 export class User extends Model<UserAttributes> implements UserAttributes {
     public id!: string;
     public email!: string;
+    public profilePic!: string;
     public username!: string;
-    public password!: string;
 
     static associate(models: models) {
         this.hasMany(models.Movie, {
@@ -42,10 +42,11 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        password: {
+        profilePic: {
             type: DataTypes.STRING,
-            allowNull: false,
-        },
+            allowNull: false
+        }
+
     }, {
     timestamps: true,
     sequelize,
