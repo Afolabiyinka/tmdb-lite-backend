@@ -44,7 +44,7 @@ User.init(
         },
         profilePic: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         }
 
     }, {
