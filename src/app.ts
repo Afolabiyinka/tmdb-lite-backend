@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import { authMiddleware } from "./middleware/authMiddleWare";
 import { MovieRouter } from "./routes/movieRouter";
 import { connectDb } from "./config/db";
+import { errorHandler } from "./middleware/errorMiddleware";
 
 configDotenv();
 
@@ -27,11 +28,25 @@ app.use(cookieParser());
 connectDb()
 syncModels()
 
+// Health Check
+app.get("/health", (req, res) => {
+    res.json({
+        status: "ok",
+        timestamp: new Date().toISOString(),
+        environment: NODE_ENV
+    });
+});
+
+
+const NODE_ENV = process.env.NODE_ENV
+
 
 // Routing 
 app.use("/api/auth", AuthRouter);
 app.use("/api/favourites", authMiddleware, MovieRouter)
 
+
+app.use(errorHandler)
 
 
 app.listen(PORT, () => {

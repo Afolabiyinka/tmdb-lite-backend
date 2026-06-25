@@ -10,3 +10,7 @@ export type DecodedUser = {
     id: string | number;
 };
 export type EditUserPayload = Omit<SignupPayload, "password">;
+
+export type GoogleLoginPayload = {
+    credential: string
+}
