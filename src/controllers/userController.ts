@@ -26,7 +26,6 @@ const getUser: RequestHandler = async (req, res, next) => {
             },
         });
     } catch (err) {
-        console.log(err);
         return res.status(500).json({ message: "Something went wrong" });
     }
 };
@@ -59,7 +58,6 @@ const editUser: RequestHandler = async (req, res) => {
             message: "User updated successfully",
         });
     } catch (err) {
-        console.log(err);
         return res.status(500).json({ message: "Something went wrong" });
     }
 };
@@ -77,7 +75,6 @@ const deleteAccount: RequestHandler = async (req, res) => {
         res.status(200).json({ message: "Account deleted Succesfully" });
     } catch (err) {
         res.status(500).json({ message: "Something went wrong" });
-        console.log(err);
     }
 };
 export { getUser, editUser, deleteAccount };

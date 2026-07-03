@@ -56,7 +56,6 @@ const addToFavorites: RequestHandler = async (req, res) => {
             message: "Added to favourites"
         })
     } catch (err) {
-        console.log(err)
         res.status(500).json({
             message: "Something went wrong"
         })
@@ -102,7 +101,13 @@ const removeFromFavourites: RequestHandler = async (req, res) => {
     if (!userId) {
         return res.status(401).json({ message: "Unauthorized" });
     }
-    const { movieId } = req.body
+    const { movieId } = req.params
+
+    const parsedId = Number(movieId);
+
+    if (isNaN(parsedId)) {
+        return res.status(400).json({ message: "Invalid Movie Id" });
+    }
 
     if (!movieId) {
         return res.status(400).json({ message: "Movie Id is required" });
