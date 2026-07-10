@@ -2,12 +2,12 @@ import express from "express"
 import cors from "cors"
 import { configDotenv } from "dotenv";
 import { syncModels } from "./models";
-import { AuthRouter } from "./routes/authRouter";
+import { AuthRouter } from "./routes/auth.routes";
 import cookieParser from "cookie-parser";
-import { authMiddleware } from "./middleware/authMiddleWare";
-import { MovieRouter } from "./routes/movieRouter";
+import { authMiddleware } from "./middlewares/auth.middleware";
+import { FavouritesRouter } from "./routes/favourites.routes";
 import { connectDb } from "./config/db";
-import { errorHandler } from "./middleware/errorMiddleware";
+import { errorHandler } from "./middlewares/error.middleware";
 
 configDotenv();
 
@@ -24,9 +24,14 @@ app.use(cors(
 
 app.use(express.json())
 app.use(cookieParser());
+
+
 //Connecting the database
 connectDb()
 syncModels()
+
+
+const NODE_ENV = process.env.NODE_ENV
 
 // Health Check
 app.get("/health", (req, res) => {
@@ -38,13 +43,11 @@ app.get("/health", (req, res) => {
 });
 
 
-const NODE_ENV = process.env.NODE_ENV
 
 
 // Routing 
 app.use("/api/auth", AuthRouter);
-app.use("/api/favourites", authMiddleware, MovieRouter)
-
+app.use("/api/favourites", authMiddleware, FavouritesRouter)
 
 app.use(errorHandler)
 

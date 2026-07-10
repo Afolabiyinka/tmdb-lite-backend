@@ -1,12 +1,13 @@
 {
   "name": "tmdb-lite-backend",
   "version": "1.0.0",
-  "description": "TypeScript Node.js Express backend starter",
+  "description": "TypeScript Node.js Express",
   "main": "dist/server.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
     "build": "tsc",
-    "start": "node dist/app.js"
+    "start": "node dist/app.js",
+    "doctor": "npx react-doctor@latest"
   },
   "keywords": [],
   "author": "",

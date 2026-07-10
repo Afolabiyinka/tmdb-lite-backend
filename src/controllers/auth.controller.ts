@@ -1,12 +1,10 @@
 import { RequestHandler, Response } from "express";
-import { GoogleLoginPayload, } from "../types/auth";
+import { GoogleLoginPayload, } from "../types/auth.types";
 import { User } from "../models/User";
 import { OAuth2Client } from "google-auth-library";
 import { generateToken } from "../utils/generateToken";
-import { ApiError } from "../types/error";
+import { ApiError } from "../types/error.types";
 import { COOKIE_NAME, cookieOptions } from "../utils/cookieOptions";
-
-
 
 const googleClient = new OAuth2Client(
     process.env.GOOGLE_CLIENT_ID,

@@ -1,6 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../config/db";
-import { models } from "../types/models";
+import { models } from "../types/models.types";
 
 interface UserAttributes {
     id?: string;

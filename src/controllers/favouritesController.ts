@@ -1,4 +1,4 @@
-import { MovieType } from "../types/movie";
+import { MovieType } from "../types/movie.types";
 import { Movie } from "../models/Movie";
 import { RequestHandler } from "express";
 

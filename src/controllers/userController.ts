@@ -1,6 +1,6 @@
 import { RequestHandler, } from "express";
 import { User } from "../models/User";
-import { EditUserPayload } from "../types/auth";
+import { EditUserPayload } from "../types/auth.types";
 
 const getUser: RequestHandler = async (req, res, next) => {
     const id = req.user?.id;
