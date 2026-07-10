@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 import jwt, { TokenExpiredError } from "jsonwebtoken";
-import { DecodedUser } from "../types/auth";
+import { DecodedUser } from "../types/auth.types";
 import { COOKIE_NAME } from "../utils/cookieOptions";
 
 const jwtSecret = process.env.JWT_SECRET;

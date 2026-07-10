@@ -1,7 +1,7 @@
 import { DataTypes, Model } from "sequelize";
-import { MovieType } from "../types/movie";
+import { MovieType } from "../types/movie.types";
 import { sequelize } from "../config/db";
-import { models } from "../types/models";
+import { models } from "../types/models.types";
 
 export class Movie extends Model<MovieType> implements MovieType {
     public id!: number;

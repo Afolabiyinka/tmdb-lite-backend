@@ -4,8 +4,8 @@ import {
     editUser,
     getUser,
 } from "../controllers/userController";
-import { authMiddleware } from "../middleware/authMiddleWare";
-import { googleLogin, logout } from "../controllers/authController";
+import { authMiddleware } from "../middlewares/auth.middleware";
+import { googleLogin, logout } from "../controllers/auth.controller";
 
 export const AuthRouter = Router();
 
